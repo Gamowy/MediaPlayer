@@ -12,15 +12,15 @@ namespace Media_Player.ViewModel
 
         public AddEditTrack()
         {
-            if (ViewModelShare.selectedTrackShare != null)
+            if (WindowContext.selectedTrackShare != null)
             {
-                TrackName = ViewModelShare.selectedTrackShare.TrackName;
-                Artist = ViewModelShare.selectedTrackShare.Artist;
-                Album = ViewModelShare.selectedTrackShare.Album;
-                Genre = ViewModelShare.selectedTrackShare.Genre;
-                ReleaseYear = ViewModelShare.selectedTrackShare.ReleaseYear.ToString();
-                AudioFilePath = ViewModelShare.selectedTrackShare.FilePath;
-                CoverImage = ViewModelShare.selectedTrackShare.CoverImage;
+                TrackName = WindowContext.selectedTrackShare.TrackName;
+                Artist = WindowContext.selectedTrackShare.Artist;
+                Album = WindowContext.selectedTrackShare.Album;
+                Genre = WindowContext.selectedTrackShare.Genre;
+                ReleaseYear = WindowContext.selectedTrackShare.ReleaseYear.ToString();
+                AudioFilePath = WindowContext.selectedTrackShare.FilePath;
+                CoverImage = WindowContext.selectedTrackShare.CoverImage;
             }
         }
 
@@ -192,13 +192,13 @@ namespace Media_Player.ViewModel
                 {
                     year = Int32.Parse(ReleaseYear);
                 }
-                ViewModelShare.selectedTrackShare!.TrackName = TrackName!;
-                ViewModelShare.selectedTrackShare!.Artist = Artist;
-                ViewModelShare.selectedTrackShare!.Album = Album;
-                ViewModelShare.selectedTrackShare!.Genre = Genre;
-                ViewModelShare.selectedTrackShare!.ReleaseYear = year;
-                ViewModelShare.selectedTrackShare.FilePath = AudioFilePath!;
-                ViewModelShare.selectedTrackShare!.CoverImage = CoverImage;
+                WindowContext.selectedTrackShare!.TrackName = TrackName!;
+                WindowContext.selectedTrackShare!.Artist = Artist;
+                WindowContext.selectedTrackShare!.Album = Album;
+                WindowContext.selectedTrackShare!.Genre = Genre;
+                WindowContext.selectedTrackShare!.ReleaseYear = year;
+                WindowContext.selectedTrackShare.FilePath = AudioFilePath!;
+                WindowContext.selectedTrackShare!.CoverImage = CoverImage;
 
                 MessageBox.Show($"Pomyślnie edytowano utwór.", "Sukces!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -219,7 +219,7 @@ namespace Media_Player.ViewModel
                 {
                     year = Int32.Parse(ReleaseYear);
                 }
-                Playlist? playlist = ViewModelShare.playlistShare;
+                Playlist? playlist = WindowContext.playlistShare;
                 Track newTrack = new Track(null, TrackName!, AudioFilePath!);
                 newTrack.Artist = artist;
                 newTrack.Album = album;
@@ -255,7 +255,7 @@ namespace Media_Player.ViewModel
             {
                 return new RelayCommand(execute =>
                 {
-                    if (ViewModelShare.selectedTrackShare != null)
+                    if (WindowContext.selectedTrackShare != null)
                     {
                         editTrack();
                     }

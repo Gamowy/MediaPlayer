@@ -2,7 +2,7 @@
 {
     using Model;
 
-    public static class ViewModelShare
+    public static class WindowContext
     {
         public static Playlist? playlistShare = null;
         public static Track? selectedTrackShare = null;

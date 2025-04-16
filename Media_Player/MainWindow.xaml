@@ -70,17 +70,25 @@
                 <MediaElement Name="MediaElement" Source="{Binding MediaElementVM.MediaUri}" Volume="{Binding MediaElementVM.VolumeLevel}" MediaEnded="MediaElement_MediaEnded" LoadedBehavior="Manual"/>
             </Grid>
         </Border>
-        <DataGrid x:Name="PlaylistDataGrid" ItemsSource="{Binding Path=Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="{Binding SelectedIndex}" Grid.Column="4" Grid.Row="4" Grid.RowSpan="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" HeadersVisibility="Column" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black">
+        <DataGrid x:Name="PlaylistDataGrid" ItemsSource="{Binding Path=Tracks}" SelectedItem="{Binding SelectedTrack}" SelectedIndex="{Binding SelectedIndex}" Grid.Column="4" Grid.Row="4" Grid.RowSpan="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="True" HeadersVisibility="Column" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" Style="{x:Null}">
             <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridCell}">
-                    <Style.Triggers>
-                        <Trigger Property="DataGridCell.IsSelected" Value="True">
-                            <Setter Property="Background" Value="#1DB954"/>
-                        </Trigger>
-                    </Style.Triggers>
-                    <Setter Property="BorderThickness" Value="0"/>
-                </Style>
-                <Style TargetType="DataGridColumnHeader">
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border 
+                        Background="#1DB954" 
+                        BorderBrush="#1DB954" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="0">
+                                    <!-- Set your desired CornerRadius here -->
+                                    <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns> 

@@ -237,24 +237,24 @@ namespace Media_Player.ViewModel
         }
         private void openAddTrackWindow()
         {
-            ViewModelShare.playlistShare = playlist;
+            WindowContext.playlistShare = playlist;
             addTrackWindow = new AddTrackWindow("dodaj");
             addTrackWindow.ShowDialog();
             Tracks = playlist?.Tracks;
-            ViewModelShare.playlistShare = null;
+            WindowContext.playlistShare = null;
         }
 
         private void openEditTrackWindow()
         {
-            ViewModelShare.playlistShare = playlist;
-            ViewModelShare.selectedTrackShare = SelectedTrack;
+            WindowContext.playlistShare = playlist;
+            WindowContext.selectedTrackShare = SelectedTrack;
             addTrackWindow = new AddTrackWindow("edytuj");
             addTrackWindow.ShowDialog();
-            SelectedTrack = ViewModelShare.selectedTrackShare;
+            SelectedTrack = WindowContext.selectedTrackShare;
             Tracks = null;
             Tracks = playlist?.Tracks;
-            ViewModelShare.playlistShare = null;
-            ViewModelShare.selectedTrackShare = null;
+            WindowContext.playlistShare = null;
+            WindowContext.selectedTrackShare = null;
         }
 
         private void deleteSelectedTrack()
